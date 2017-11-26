@@ -1,6 +1,9 @@
 package com.bootcamp.controllers;
 
 import com.bootcamp.models.Axe;
+import com.bootcamp.models.Comment;
+import com.bootcamp.models.Media;
+import com.bootcamp.models.Secteur;
 import com.bootcamp.version.ApiVersions;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -52,5 +55,61 @@ public class AxeController {
 
         HttpStatus httpStatus = HttpStatus.OK;
         return new ResponseEntity( httpStatus);
+    }
+
+        //add comments from an axe URI
+    @RequestMapping(method = RequestMethod.POST, value = "/{id}/comment/")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Create a comment on a given axe", notes = "Create a comment on a given axe")
+    public ResponseEntity<Comment> addComment(@RequestBody Comment comment) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<Comment>(httpStatus);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/comments")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Get the list of comments made on a given axe", notes = "Get the list of comments made on a given axe")
+    public ResponseEntity<List<Comment>> getComments(@RequestBody Comment comment) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<List<Comment>>(httpStatus);
+    }
+
+    //add Media from a pillar URI
+    @RequestMapping(method = RequestMethod.POST, value = "/{id}/media/")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Create a media on a given axe", notes = "Create a media on a given axe")
+    public ResponseEntity<Media> addMedia(@RequestBody Media media) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<Media>(httpStatus);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/medias")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Get the list of media related to a given axe", notes = "Get the list of media related to a given axe")
+    public ResponseEntity<List<Media>> getMedias(@RequestBody Media media) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<List<Media>>(httpStatus);
+    }
+       //add Sector to an axe URI
+    @RequestMapping(method = RequestMethod.POST, value = "/{id}/sector/")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Add sector to a specific axe", notes = "Add sector to a specific axe")
+    public ResponseEntity<Secteur> addSector(@RequestBody Secteur secteur) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<Secteur>(httpStatus);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/sectors")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Get the list of sectors related to a given axe", notes = "Get the list of sectors related to a given axe")
+    public ResponseEntity<List<Secteur>> getSecteurs(@RequestBody Secteur secteur) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<List<Secteur>>(httpStatus);
     }
 }

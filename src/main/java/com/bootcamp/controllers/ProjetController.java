@@ -1,6 +1,9 @@
 package com.bootcamp.controllers;
 
+import com.bootcamp.models.Comment;
+import com.bootcamp.models.Media;
 import com.bootcamp.models.Projet;
+import com.bootcamp.models.Region;
 import com.bootcamp.version.ApiVersions;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,7 +24,7 @@ public class ProjetController {
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ApiVersions({"1.0"})
     @ApiOperation(value = "Get all the projects", notes = "Get all the projects")
-    public ResponseEntity<List<Projet>> getProjet( ) {
+    public ResponseEntity<List<Projet>> getProjet() {
 
         HttpStatus httpStatus = HttpStatus.OK;
         return new ResponseEntity<List<Projet>>(httpStatus);
@@ -51,6 +54,63 @@ public class ProjetController {
     public ResponseEntity deleteProjet(@RequestParam int id) {
 
         HttpStatus httpStatus = HttpStatus.OK;
-        return new ResponseEntity( httpStatus);
+        return new ResponseEntity(httpStatus);
+    }
+    //add comments from a Project URI
+
+    @RequestMapping(method = RequestMethod.POST, value = "/{id}/comment/")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Create a comment on a given project", notes = "Create a comment on a given project")
+    public ResponseEntity<Comment> addComment(@RequestBody Comment comment) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<Comment>(httpStatus);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/comments")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Get the list of comments made on a given project", notes = "Get the list of comments made on a given project")
+    public ResponseEntity<List<Comment>> getComments(@RequestBody Comment comment) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<List<Comment>>(httpStatus);
+    }
+
+    //add Media from a project URI
+    @RequestMapping(method = RequestMethod.POST, value = "/{id}/media/")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Create a media on a given project", notes = "Create a media on a given project")
+    public ResponseEntity<Media> addMedia(@RequestBody Media media) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<Media>(httpStatus);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/medias")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Get the list of media related to a given project", notes = "Get the list of media related to a given project")
+    public ResponseEntity<List<Media>> getMedias(@RequestBody Media media) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<List<Media>>(httpStatus);
+    }
+
+       //add region of impact from a project URI
+    @RequestMapping(method = RequestMethod.POST, value = "/{id}/region/")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Create a region of impact for a given project", notes = "Create a region of impact for a given project")
+    public ResponseEntity<Region> addRegion(@RequestBody Region region) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<Region>(httpStatus);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/regions")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Get the list of regions related of a given project", notes = "Get the list of regions related of a given project")
+    public ResponseEntity<List<Region>> getRegions(@RequestBody Region region) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<List<Region>>(httpStatus);
     }
 }

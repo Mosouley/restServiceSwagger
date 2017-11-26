@@ -1,5 +1,8 @@
 package com.bootcamp.controllers;
 
+import com.bootcamp.models.Axe;
+import com.bootcamp.models.Comment;
+import com.bootcamp.models.Media;
 import com.bootcamp.models.Pilier;
 import com.bootcamp.version.ApiVersions;
 import io.swagger.annotations.Api;
@@ -21,13 +24,13 @@ public class PilierController {
     @RequestMapping(method = RequestMethod.GET, value = "/list")
     @ApiVersions({"1.0"})
     @ApiOperation(value = "Get all the pillars", notes = "Get all the pillars")
-    public ResponseEntity<List<Pilier>> getPilier( ) {
+    public ResponseEntity<List<Pilier>> getPilier() {
 
         HttpStatus httpStatus = HttpStatus.OK;
         return new ResponseEntity<List<Pilier>>(httpStatus);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/create")
+    @RequestMapping(method = RequestMethod.POST, value = "/")
     @ApiVersions({"1.0"})
     @ApiOperation(value = "Create a new pillar", notes = "Create a new pillar")
     public ResponseEntity<Pilier> createPilier(@RequestBody Pilier pilier) {
@@ -51,6 +54,63 @@ public class PilierController {
     public ResponseEntity deletePilier(@RequestParam int id) {
 
         HttpStatus httpStatus = HttpStatus.OK;
-        return new ResponseEntity( httpStatus);
+        return new ResponseEntity(httpStatus);
+    }
+
+    //add axe on a given pilar from its URI
+    @RequestMapping(method = RequestMethod.POST, value = "/{id}/axe/")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Create an axe from a given pillar", notes = "Create an axe from a given pillar")
+    public ResponseEntity<Pilier> addAxe(@RequestBody Axe axe) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<Pilier>(httpStatus);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/axes")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Get the list of axes of a given pillar", notes = "Get the list of axes of a given pillar")
+    public ResponseEntity<List<Axe>> getAxes(@RequestBody Axe axe) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<List<Axe>>(httpStatus);
+    }
+
+    //add comments from a pillar URI
+    @RequestMapping(method = RequestMethod.POST, value = "/{id}/comment/")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Create a comment on a given pillar", notes = "Create a comment on a given pillar")
+    public ResponseEntity<Comment> addComment(@RequestBody Comment comment) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<Comment>(httpStatus);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/comments")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Get the list of comments made on a given pillar", notes = "Get the list of comments made on a given pillar")
+    public ResponseEntity<List<Comment>> getComments(@RequestBody Comment comment) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<List<Comment>>(httpStatus);
+    }
+
+    //add Media from a pillar URI
+    @RequestMapping(method = RequestMethod.POST, value = "/{id}/media/")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Create a media on a given pillar", notes = "Create a media on a given pillar")
+    public ResponseEntity<Media> addMedia(@RequestBody Media media) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<Media>(httpStatus);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/medias")
+    @ApiVersions({"1.0"})
+    @ApiOperation(value = "Get the list of media related to a given pillar", notes = "Get the list of media related to a given pillar")
+    public ResponseEntity<List<Media>> getMedias(@RequestBody Media media) {
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        return new ResponseEntity<List<Media>>(httpStatus);
     }
 }
